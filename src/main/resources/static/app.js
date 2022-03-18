@@ -27,7 +27,6 @@ var app = (function () {
         };
     };
 
-
     var connectAndSubscribe = function () {
         console.info('Connecting to WS...');
         var socket = new SockJS('/stompendpoint');
@@ -43,8 +42,6 @@ var app = (function () {
         });
 
     };
-    
-    
 
     return {
 
