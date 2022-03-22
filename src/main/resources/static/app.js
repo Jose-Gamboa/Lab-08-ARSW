@@ -37,7 +37,8 @@ var app = (function () {
             console.log('Connected: ' + frame);
             stompClient.subscribe('/topic/newpoint', function (eventbody) {
                 var pointJSON=JSON.parse(eventbody.body);
-                alert("El punto agregado fue "+pointJSON.x+' '+pointJSON.y);
+                addPointToCanvas(pointJSON);
+
             });
         });
 
@@ -47,6 +48,10 @@ var app = (function () {
 
         init: function () {
             var can = document.getElementById("canvas");
+            can.addEventListener("pointerdown", (event) => {
+                var npoint = getMousePosition(event);
+                stompClient.send("/topic/newpoint", {}, JSON.stringify(npoint));
+            })
             
             //websocket connection
             connectAndSubscribe();
