@@ -54,11 +54,11 @@ var app = (function () {
 
             //websocket connection
             connectAndSubscribe(number);
-            
+
             var can = document.getElementById("canvas");
             can.addEventListener("pointerdown", (event) => {
                 var npoint = getMousePosition(event);
-                stompClient.send("/topic/newpoint."+number, {}, JSON.stringify(npoint));
+                stompClient.send("/app/newpoint."+number, {}, JSON.stringify(npoint));
             })
 
         },
